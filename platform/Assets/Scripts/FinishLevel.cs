@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FinishLevel : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class FinishLevel : MonoBehaviour
 
     void OnTriggerEnter()
     {
+        
         GetComponent<BoxCollider>().enabled = false;
         levelBlocker.SetActive(true);
         levelBlocker.transform.parent = null;
@@ -28,7 +30,9 @@ public class FinishLevel : MonoBehaviour
         theScore.GetComponent<Text>().text = "Score: " + GlobalScore.currentScore;
         totalScored = GlobalScore.currentScore + timeCalc;
         totalScore.GetComponent<Text>().text = "Total Score: " + totalScored;
+        PlayerPrefs.SetInt("LevelScore", totalScored);
         levelTimer.SetActive(false);
+        levelMusic.SetActive(false);
         levelComplete.Play();
         StartCoroutine(CalculateScore());
     }
@@ -42,6 +46,9 @@ public class FinishLevel : MonoBehaviour
         totalScore.SetActive(true);
         yield return new WaitForSeconds(2);
         fadeOut.SetActive(true);
+        yield return new WaitForSeconds(2);
+        GlobalScore.currentScore = 0;
+        SceneManager.LoadScene(RedirectToLevel.nextLevel);
     }
 
 }

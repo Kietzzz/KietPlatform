@@ -7,6 +7,7 @@ public class RedirectToLevel : MonoBehaviour
 {
 
     public static int redirectToLevel;
+    public static int nextLevel;
 
 
     void Update()

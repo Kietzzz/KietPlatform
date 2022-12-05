@@ -15,9 +15,12 @@ EditorBuildSettings:
     path: Assets/RedirectLevel.unity
     guid: 93aa42a44da504045a4c8201c269fea0
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Level001.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
     path: Assets/Credits.unity
     guid: 84252ac92318cd147996ad29e706d0fb
+  - enabled: 1
+    path: Assets/Scenes/Level002.unity
+    guid: 8221167a608072d44a013565580b2b21
   m_configObjects: {}
