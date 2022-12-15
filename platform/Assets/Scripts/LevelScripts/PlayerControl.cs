@@ -19,7 +19,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     
-    void Update()
+    void LateUpdate()
     {
         /*rb.velocity = new Vector3(Input.GetAxis("Horizontal") * MoveSpeed, rb.velocity.y, Input.GetAxis("Vertical") * MoveSpeed);
 
@@ -29,14 +29,26 @@ public class PlayerControl : MonoBehaviour
         }
         */
 
-        moveDicrection = new Vector3(Input.GetAxis("Horizontal") * MoveSpeed, 0, Input.GetAxis("Vertical") * MoveSpeed);
+        //moveDicrection = new Vector3(Input.GetAxis("Horizontal") * MoveSpeed, moveDicrection.y, Input.GetAxis("Vertical") * MoveSpeed);
+        float yStore = moveDicrection.y;
+        moveDicrection = (transform.forward * Input.GetAxis("Vertical")) + (transform.right * Input.GetAxis("Horizontal"));
+        moveDicrection = moveDicrection.normalized * MoveSpeed;
+        moveDicrection.y = yStore;
 
-        if (Input.GetButtonDown("Jump"))
+        //nhay
+        if (controller.isGrounded)
         {
-            moveDicrection.y = JumpForce;
+            moveDicrection.y = 0;
+            if (Input.GetButtonDown("Jump"))
+            {
+                
+                moveDicrection.y = JumpForce;
+            }
         }
-        moveDicrection.y = moveDicrection.y + (Physics.gravity.y * gravityScale);
-        controller.Move(moveDicrection*Time.deltaTime);
+        moveDicrection.y = moveDicrection.y + (Physics.gravity.y * gravityScale * Time.deltaTime);
+        controller.Move(moveDicrection * Time.deltaTime);
 
     }
+
+    
 }
