@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
     public float MoveSpeed;
     //private Rigidbody rb;
     public float JumpForce;
-
+    public Animation RunForward;
     private CharacterController controller;
 
     private Vector3 moveDicrection;

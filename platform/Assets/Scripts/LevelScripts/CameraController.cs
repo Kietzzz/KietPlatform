@@ -27,6 +27,15 @@ public class CameraController : MonoBehaviour
         float vertical = Input.GetAxis("Mouse Y") * rotateSpeed;
         pivot.transform.Rotate(-vertical,0 , 0);
 
+        if(pivot.rotation.eulerAngles.x>45f && pivot.rotation.eulerAngles.x < 180f)
+        {
+            pivot.rotation = Quaternion.Euler(45f, 0, 0);
+        }
+        if (pivot.rotation.eulerAngles.x > 180f && pivot.rotation.eulerAngles.x < 315f)
+        {
+            pivot.rotation = Quaternion.Euler(315f, 0, 0);
+        }
+
         float Xangel = pivot.transform.eulerAngles.x;
         float Yangel = target.transform.eulerAngles.y;
 
